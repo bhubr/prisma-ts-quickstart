@@ -211,3 +211,120 @@ replication:
 ```
 rs.initiate()
 ```
+
+## Exemples de queries / mutations
+
+### Créer un user
+
+**Mutation**
+
+```graphql
+mutation Mutation($data: UserCreateInput!) {
+  createUser(data: $data) {
+    id
+  }
+}
+```
+
+**Variables**
+
+```json
+{
+  "data": {
+    "email": "johndoe@gmail.com",
+    "name": "John Doe"
+  }
+}
+```
+
+### Créer un projet
+
+**Mutation**
+
+```graphql
+mutation Mutation($projectData: ProjectCreateInput!) {
+  createProject(data: $projectData) {
+    id
+    name
+  }
+}
+```
+
+**Variables**
+
+```json
+{
+  "projectData": {
+    "name": "My super project",
+    "description": "This is only a dummy description."
+  }
+}
+```
+
+### Créer une issue pour un user existant
+
+**Mutation**
+
+```graphql
+mutation Mutation($data: IssueCreateInput!) {
+  createIssue(data: $data) {
+    id
+    authorId
+    title
+    content
+  }
+}
+```
+
+**Variables**
+
+```json
+{
+  "data": {
+    "author": {
+      "connect": {
+        "id": "619ef88d14cc1b11a0fdcb15"
+      }
+    },
+    "project": {
+      "connect": {
+        "id": "619ef91d14cc1b11a0fdcb16"
+      }
+    },
+    "title": "Sample issue",
+    "content": "This is ny first issue!",
+    "published": true
+  }
+}
+```
+
+### Interroger un user avec ses projets et issues
+
+```graphql
+query Query($where: UserWhereUniqueInput!) {
+  users {
+    id
+    name
+    projects {
+      id
+      name
+    }
+    authoredIssues {
+      id
+      title
+      project {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+```json
+{
+  "where": {
+    "id": "619ef88d14cc1b11a0fdcb15"
+  }
+}
+```
