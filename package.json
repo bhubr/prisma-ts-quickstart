@@ -2,16 +2,22 @@
   "name": "script",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "16.11.9",
     "prisma": "3.5.0",
     "ts-node": "10.4.0",
-    "typescript": "4.5.2",
-    "@types/node": "16.11.9"
+    "typegraphql-prisma": "^0.18.0",
+    "typescript": "4.5.2"
   },
   "scripts": {
     "dev": "ts-node ./script.ts"
   },
   "dependencies": {
-    "@prisma/client": "3.5.0"
+    "@prisma/client": "3.5.0",
+    "@types/graphql-fields": "^1.3.4",
+    "graphql": "^15.3.0",
+    "graphql-fields": "^2.0.3",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
   },
   "engines": {
     "node": ">=12.2.0"
