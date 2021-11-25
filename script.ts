@@ -12,19 +12,21 @@ async function main() {
     resolvers,
     validate: false,
   });
-  // const user = await prisma.user.create({
+  
+  // TEMP (use a DB seeder instead!)
+  // await prisma.user.create({
+  //   data: {
+  //     email: 'elsa@prisma.io',
+  //     name: 'Elsa Prisma',
+  //   },
+  // });
+  // await prisma.user.create({
   //   data: {
   //     email: 'john@prisma.io',
   //     name: 'John Prisma',
   //   },
   // });
-  const allUsers = await prisma.user.findMany({
-    include: {
-      authoredIssues: true,
-      assignedIssues: true,
-    },
-  });
-  // use `console.dir` to print nested objects
+
   const server: ApolloServer = new ApolloServer({
     schema,
     context: () => ({ prisma }),
