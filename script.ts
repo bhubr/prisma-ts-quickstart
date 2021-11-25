@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { PrismaClient } from '@prisma/client';
 import { buildSchema } from 'type-graphql';
+import { ApolloServer } from 'apollo-server';
 import { resolvers } from './prisma/generated/type-graphql';
 
 const prisma = new PrismaClient();
@@ -13,8 +14,8 @@ async function main() {
   });
   // const user = await prisma.user.create({
   //   data: {
-  //     email: 'elsa@prisma.io',
-  //     name: 'Elsa Prisma',
+  //     email: 'john@prisma.io',
+  //     name: 'John Prisma',
   //   },
   // });
   const allUsers = await prisma.user.findMany({
@@ -24,7 +25,12 @@ async function main() {
     },
   });
   // use `console.dir` to print nested objects
-  console.dir(allUsers, { depth: null });
+  const server: ApolloServer = new ApolloServer({
+    schema,
+    context: () => ({ prisma }),
+  });
+  const { url } = await server.listen();
+  console.log(`Apollo Server up&running: ${url}`);
 }
 
 main()

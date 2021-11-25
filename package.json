@@ -3,17 +3,19 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "16.11.9",
+    "nodemon": "^2.0.15",
     "prisma": "3.5.0",
     "ts-node": "10.4.0",
     "typegraphql-prisma": "^0.18.0",
     "typescript": "4.5.2"
   },
   "scripts": {
-    "dev": "ts-node ./script.ts"
+    "dev": "nodemon --exec ts-node ./script.ts"
   },
   "dependencies": {
     "@prisma/client": "3.5.0",
     "@types/graphql-fields": "^1.3.4",
+    "apollo-server": "^3.5.0",
     "graphql": "^15.3.0",
     "graphql-fields": "^2.0.3",
     "reflect-metadata": "^0.1.13",
