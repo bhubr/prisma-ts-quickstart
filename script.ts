@@ -11,6 +11,12 @@ async function main() {
     resolvers,
     validate: false,
   });
+  // const user = await prisma.user.create({
+  //   data: {
+  //     email: 'elsa@prisma.io',
+  //     name: 'Elsa Prisma',
+  //   },
+  // });
   const allUsers = await prisma.user.findMany({
     include: {
       authoredIssues: true,
@@ -19,7 +25,6 @@ async function main() {
   });
   // use `console.dir` to print nested objects
   console.dir(allUsers, { depth: null });
-
 }
 
 main()
